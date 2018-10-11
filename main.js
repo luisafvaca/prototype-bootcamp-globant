@@ -30,7 +30,7 @@
     // }
 //4. Metodos
      Person.prototype.introduce = function(){
-         conosle.log(`Hi my name is ${this.name} ${this.lastName}`);
+         console.log(`Hi my name is ${this.name} ${this.lastName}`);
      }
 //4.1 cómo ejecutar los metodos ? 
      person.introduce()
