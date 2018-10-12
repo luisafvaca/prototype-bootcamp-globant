@@ -15,12 +15,14 @@
      person.myNewPropierty = "new propierty";
 //2. Funciones constructoras
      function Person (name, lastName, gender){
+         //var this = {}
          this.name = name;
          this.lastName = lastName;
          this.gender = gender;
+         //retorn this
      }
 //3. Cómo ejecutar esta función?
-     person("Luisa", "Vaca", "F"); //undefined
+     Person("Luisa", "Vaca", "F"); //undefined
 //3.1 Operador new: le dirá al motor de javascript que la funcion se ejecutará de manera constructora
      var person = new Person("luisa", "Vaca", "Female")
     // {
@@ -28,12 +30,14 @@
     //     lastName: "Vaca",
     //     gender: "Female"
     // }
+    console.log(person, '1')
 //4. Metodos
      Person.prototype.introduce = function(){
          console.log(`Hi my name is ${this.name} ${this.lastName}`);
      }
 //4.1 cómo ejecutar los metodos ? 
-     person.introduce()
+    person.introduce();
+    console.log("introduce");
      // Hi my name is Luisa Vaca
 //5 Heredando en un nuevo nivel! Y si las personas tuvieran profesiones?
      function Developer(name, lastName, gender, yearsOfExperience){
@@ -45,7 +49,9 @@
 //5.3 Heredemos metodos!
      Developer.prototype = Object.create(Person.prototype);
 //5.4 Ahora podemos acceder a los metodos de Persona
-
+    var developer =  new Developer("Pepito", "Ramirez", "F", 6)
+    developer.introduce()
+    console.log("developer introduce")
 //               |))    |))
 // .             |  )) /   ))
 // \\   ^ ^      |    /      ))
@@ -64,7 +70,7 @@
 
 //6. Herencia encadenada o Delegación
 //6.1 Qué hizo Javascript para heredar?
-     //Bombero está construido a partir de un prototipo? // Si
+     //Developer está construido a partir de un prototipo? // Si
      //Cual prototipo? // Person
      //Person tiene el metodo presentarse ? Sí
 //7 Tambien podemos crearle un Metodo a developer de la misma manera que Person
@@ -74,7 +80,8 @@
 //8 Qué son clases ?
 //8.1 Sugar sintax
 //9.Escribamos lo anterior en una clase  
-class Person{
+
+class PersonWithClass{
     constructor(name, lastName, gender){
       this.name = name;
       this.lastName = lastName;
@@ -85,9 +92,11 @@ class Person{
     }
 }
 
-var person = new Person("Luisa", "Vaca", "Female");
- 
-class Developer extends Person{
+var personWithClass = new PersonWithClass("Luisa", "Vaca", "Female");
+console.log(personWithClass, "personWithClass");
+personWithClass.introduce()
+
+class DeveloperWhithClass extends Person{
     constructor(name, lastName, gender, yearsOfExperience){
       super(name, lastName, gender);
       this.yearsOfExperience = yearsOfExperience;
@@ -98,7 +107,9 @@ class Developer extends Person{
   }
 }
 
-var person = new Developer("Luisa", "Vaca", "Female", 2.5);
+var developerWithClass = new DeveloperWhithClass("Luisa", "Vaca", "Female", 2.5);
+console.log(developerWithClass, "developerWithClass");
+developerWithClass.profesionalIntroduce();
 
 // .     .       .  .   . .   .   . .    +  .
 //   .     .  :     .    .. :. .___---------___.
